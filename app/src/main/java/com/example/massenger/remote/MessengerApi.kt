@@ -1,9 +1,9 @@
 package com.example.massenger.remote
 
-import com.example.massenger.model.ChannelChat
+import com.example.massenger.model.ChannelChatResponse
 import retrofit2.http.GET
 
 interface MessengerApi {
-    @GET("ChannelChat")
-    suspend fun getChannelChats(): List<ChannelChat>
+    @GET("group-chats/all")
+    suspend fun getChannelChats(): ChannelChatResponse
 }

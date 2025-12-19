@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.massenger.R
 import com.example.massenger.model.ChannelChat
 
-class ChatAdapter(private val chatList: List<ChannelChat>) :
+class ChatAdapter(
+    private val chatList: List<ChannelChat>,
+    val listener: (ChannelChat) -> Unit
+) :
     RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -28,6 +31,10 @@ class ChatAdapter(private val chatList: List<ChannelChat>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chat = chatList[position]
-        holder.chatName.text = chat.name
+        holder.chatName.text = chat.displayName
+
+        holder.chatName.setOnClickListener {
+            listener(chat)
+        }
     }
 }
